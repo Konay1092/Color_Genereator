@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Code Generator</title>
+    <style type="text/css">
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        font-family: sans-serif;
+        font-size: 20px;
+        color: #fff;
+        background-color: #e63c44;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      h1 {
+        border-radius: 10px;
+        box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
+          inset 0 15px 15px rgba(255, 255, 255, 0.1),
+          0 15px 15px rgba(0, 0, 0, 0.3), inset 0 -15px 15px rgba(0, 0, 0, 0.1);
+        padding: 15px 30px;
+      }
+      button {
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+
+        padding: 10px;
+        margin-top: 100px;
+      }
+      button:active {
+        transform: translateY(2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="caption">#E63C44</h1>
+      <button id="btn" type="button">New Color</button>
+    </div>
+
+    <script type="text/javascript">
+      var btn = document.getElementById("btn");
+      var text = document.getElementById("caption");
+
+      var generator = function () {
+        newColor = "#" + ((Math.random() * 0xffffff) << 00).toString(16);
+        console.log(newColor.lenght);
+        if (newColor.lenght < 7) {
+          generator();
+        }
+      };
+      btn.addEventListener("click", function () {
+        generator();
+
+        document.body.style.background = newColor;
+        btn.style.color = newColor;
+        text.innerText = newColor;
+      });
+    </script>
+  </body>
+</html>
